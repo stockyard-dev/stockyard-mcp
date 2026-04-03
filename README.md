@@ -1,16 +1,24 @@
 # Stockyard MCP Server
 
-[Model Context Protocol](https://modelcontextprotocol.io/) server for [Stockyard](https://stockyard.dev) tools. Use AI editors like Claude Desktop, Cursor, or Windsurf to interact with your Stockyard tools.
+[Model Context Protocol](https://modelcontextprotocol.io) server for managing Stockyard self-hosted tools from AI editors like Claude Desktop, Cursor, Windsurf, and others.
 
 ## Install
 
 ```bash
-npm install -g @stockyard-dev/mcp-server
+curl -fsSL https://stockyard.dev/stockyard-mcp/install.sh | sh
+```
+
+Or build from source:
+
+```bash
+go install github.com/stockyard-dev/stockyard-mcp/cmd/stockyard-mcp@latest
 ```
 
 ## Configure
 
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+### Claude Desktop
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
@@ -22,25 +30,38 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 }
 ```
 
-## Tools
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "stockyard": {
+      "command": "stockyard-mcp"
+    }
+  }
+}
+```
+
+## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| `stockyard_list_tools` | List installed tools and their status |
-| `stockyard_health` | Check health of a specific tool |
-| `stockyard_query` | Query any tool's API |
-| `stockyard_create` | Create items (issues, contacts, flags) |
-| `stockyard_proxy_stats` | Get LLM proxy statistics |
+| `list_tools` | List installed Stockyard tools and their status |
+| `install_tool` | Install a tool by name |
+| `tool_status` | Check health of a running tool |
+| `query_api` | Make API calls to running tools |
+| `available_tools` | Browse all 150 available tools |
 
-## Examples
+## Example Usage
 
-Ask Claude:
-- "List my running Stockyard tools"
-- "Create a bug in Bounty: login page is broken"
-- "Show me today's LLM costs from Trough"
-- "Check if Bellwether is healthy"
-- "Turn on the dark-mode feature flag in Salt Lick"
+> "Install the bounty bug tracker and check its status"
 
-## License
+> "What Stockyard tools do I have installed?"
 
-Apache 2.0
+> "Query the headcount analytics API for today's visitors"
+
+## About
+
+[Stockyard](https://stockyard.dev) is a collection of 150 self-hosted developer tools. Each ships as a single Go binary with embedded SQLite. No Docker, no Postgres, no external dependencies.
