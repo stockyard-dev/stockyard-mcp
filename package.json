@@ -1,0 +1,12 @@
+{
+  "name": "@stockyard-dev/mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Stockyard tools",
+  "main": "index.js",
+  "bin": { "stockyard-mcp": "index.js" },
+  "keywords": ["mcp", "stockyard", "llm", "self-hosted", "model-context-protocol"],
+  "homepage": "https://stockyard.dev",
+  "repository": { "type": "git", "url": "https://github.com/stockyard-dev/stockyard-mcp" },
+  "license": "Apache-2.0",
+  "dependencies": {}
+}
